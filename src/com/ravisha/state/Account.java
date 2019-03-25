@@ -3,8 +3,8 @@ package com.ravisha.state;
 public class Account {
 	
 	int balance;
-	private static Account account = null;
-	public static Account getAccount(){
+	private  Account account = null;
+	public  Account getAccount(){
 		if(account == null){
 			account = new Account();
 			
@@ -17,8 +17,8 @@ public class Account {
 	public void setBalance(int balance) {
 		this.balance = balance;
 	}
-	public static void setAccount(Account account) {
-		Account.account = account;
+	public  void setAccount(Account account) {
+		this.account = account;
 	}
 	
 	

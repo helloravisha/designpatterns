@@ -1,19 +1,21 @@
 package com.ravisha.state;
 
-public class NoIntrestState implements State{
+public class SufficientFundsState implements State{
 	private AccountContext context = null;
-	private Account account = Account.getAccount();
+	private Account account = null;
 	private static int INTREST_LIMIT = 1000; // Interest will come if balance is greater than this amount.
 
 
 
-	public NoIntrestState(AccountContext context){
+	public SufficientFundsState(AccountContext context){
 		this.context = context;
+		this.account = context.getAccount();
 	}
 
 	@Override
 	public void deposit(int amount) {
-		int currentBalance = account.getBalance()+amount;
+        System.out.println("Amount deposited.."+amount);
+        int currentBalance = account.getBalance()+amount;
 		account.setBalance(currentBalance);
 		if(currentBalance > INTREST_LIMIT ){
 			context.setState(context.getIntrestState());
@@ -27,6 +29,9 @@ public class NoIntrestState implements State{
 		account.setBalance(currentBalance);
 		if(currentBalance > INTREST_LIMIT ){
 			context.setState(context.getIntrestState());
+		}
+		if(currentBalance <= 0 ){
+			context.setState(context.getInsufficientFundsState());
 		}
 		return currentBalance;
 	}
