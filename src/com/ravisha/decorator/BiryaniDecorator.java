@@ -1,6 +1,6 @@
 package com.ravisha.decorator;
 
-public class BiryaniDecorator implements RiceComponent {
+public abstract class BiryaniDecorator implements RiceComponent {
 	
 	private RiceComponent riceComponent;
 	
